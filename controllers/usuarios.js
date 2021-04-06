@@ -1,5 +1,5 @@
 
-const { response } = require('express');
+const { request, response } = require('express');
 const bcryptjs = require('bcryptjs');
 
 const Usuario = require('../models/usuario');
@@ -69,17 +69,18 @@ const usuariosPatch = (req, res = response) => {
     })
 }
 
-const usuariosDelete = async(req, res = response) => {
+const usuariosDelete = async(req = request, res = response) => {
     const id = req.params.id;
+    //const uid = req.uid;
     // borrarlo físicamente de la base de datos
     // const usuario = await Usuario.findByIdAndDelete(id);
     // soft delete, cambiando la constante estado a false
     const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
-
-
-    res.json({
-        usuario
-    })
+    // const usuarioAutenticado = req.usuario;
+    res.json({ 
+        usuario,
+        //usuarioAutenticado
+    });
 }
 
 module.exports = {

@@ -9,7 +9,17 @@ const { usuariosGet,
         usuariosPatch } = require('../controllers/usuarios');
 
 const { esRoleValido, emailExiste, existeUsuarioPorId } = require('../helpers/db-validators');
-const { validarCampos } = require('../middelwares/validar_campos');
+
+// const { validarJWT } = require('../middelwares/validar-jwt');
+// const { esAdminRole, tieneRole } = require('../middelwares/validar-roles');
+// const { validarCampos } = require('../middelwares/validar_campos');
+// lo anterior puede hacerse de la siguiente manera gracias al archivo index.js de la carpeta middlewares
+const {
+    validarCampos,
+    validarJWT,
+    esAdminRole,
+    tieneRole
+} = require('../middelwares');
 
 const router = Router();
 
@@ -34,6 +44,9 @@ router.post('/', [
         ], usuariosPost);
 
 router.delete('/:id', [
+            validarJWT,
+            // esAdminRole, // sólo si es administrador
+            tieneRole('ADMIN_ROLE', 'USER_ROLE'), // sólo si posee alguno de los roles que se pasan como argument
             check('id', 'No es in ID válido').isMongoId(),
             check('id').custom(existeUsuarioPorId),
             validarCampos
