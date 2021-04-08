@@ -23,8 +23,10 @@ const {
 
 const router = Router();
 
+//obtener un listado de usuarios
 router.get('/', usuariosGet);
 
+// actualizar un usuario
 router.put('/:id', [
             check('id', 'No es in ID válido').isMongoId(),
             check('id').custom(existeUsuarioPorId),
@@ -32,6 +34,7 @@ router.put('/:id', [
             validarCampos
         ], usuariosPut);
 
+// crear un usuario
 router.post('/', [
             check('nombre', 'El nombre es obligatorio').not().isEmpty(),
             check('password', 'El password es obligatorio y debe contener más de seis caracteres')
@@ -43,6 +46,7 @@ router.post('/', [
             validarCampos
         ], usuariosPost);
 
+// borrar un usuario
 router.delete('/:id', [
             validarJWT,
             // esAdminRole, // sólo si es administrador
@@ -52,6 +56,7 @@ router.delete('/:id', [
             validarCampos
         ], usuariosDelete);
 
+// 
 router.patch('/', usuariosPatch);
 
 module.exports = router;

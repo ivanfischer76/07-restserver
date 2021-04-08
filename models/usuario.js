@@ -34,6 +34,7 @@ const UsuarioSchema = Schema({
     },
 });
 
+// formatea el json para mostrar determinados campos y de una forma determinada
 UsuarioSchema.methods.toJSON = function() {
     const { __v, password, _id, ...usuario} = this.toObject();
     usuario.uid = _id;

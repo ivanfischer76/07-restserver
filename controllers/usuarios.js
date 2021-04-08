@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs');
 
 const Usuario = require('../models/usuario');
 
+//obtener un listado paginado de usuarios
 const usuariosGet = async(req, res = response) => {
     //const {q, nombre = 'No name', apikey, page = 1, limit = 10} = req.query;
     const { limite = 5, desde = 0 } = req.query;
@@ -31,6 +32,7 @@ const usuariosGet = async(req, res = response) => {
     });
 }
 
+// crear un usuario
 const usuariosPost = async(req, res = response) => {
     const {nombre, correo, password, rol} = req.body;
     const usuario = new Usuario({nombre, correo, password, rol});
@@ -48,11 +50,11 @@ const usuariosPost = async(req, res = response) => {
     })
 }
 
+// actualizar un usuario
 const usuariosPut = async(req, res = response) => {
     const id = req.params.id;
     const { _id, password, google, correo, ...resto} = req.body;
 
-    // TODO: validar contra base de datos
     if(password){
         const salt = bcryptjs.genSaltSync();
         resto.password = bcryptjs.hashSync(password, salt);
@@ -63,12 +65,14 @@ const usuariosPut = async(req, res = response) => {
     res.json(usuario);
 }
 
+// 
 const usuariosPatch = (req, res = response) => {
     res.json({
         msg: 'patch API - controlador'
     })
 }
 
+// borrar usuario - estado=false
 const usuariosDelete = async(req = request, res = response) => {
     const id = req.params.id;
     //const uid = req.uid;
