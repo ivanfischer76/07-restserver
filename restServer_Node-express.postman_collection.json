@@ -522,6 +522,134 @@
 				"description": "Borra el producto que coincide con el id pasado por parámetro poniendo su bandera estado en false"
 			},
 			"response": []
+		},
+		{
+			"name": "Buscar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/buscar/productos/gallet",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"buscar",
+						"productos",
+						"gallet"
+					]
+				},
+				"description": "Busca un item en una colección\n* Petición GET a la api {{url}}api/buscar/[coleccion]/[termino], donde:\n* coleccion debe ser:\n * usuarios\n * categorias\n * productos\n* Puede buscar tanto por id como por otro campo, como por ejemplo nombre, correo, etc, cualquier cosa se puede poner como temino."
+			},
+			"response": []
+		},
+		{
+			"name": "Subir archivo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/media/ivan/datos/Imagenes/media luna-001.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}api/uploads",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"uploads"
+					]
+				},
+				"description": "Endpoint para la subida de archivos.\n* En el body debe ir:\n * archivo: nombre del archivo son su extensión"
+			},
+			"response": []
+		},
+		{
+			"name": "Cargar imagen de usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/media/ivan/datos/Imagenes/eclipse-720x1280-01.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}api/uploads/usuarios/6067683c81e3c76062ecdadb",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"uploads",
+						"usuarios",
+						"6067683c81e3c76062ecdadb"
+					]
+				},
+				"description": "Sube una imagen asociada al usuario con el id pasado por parámetro. En el body debe ir:\n * archivo: imagen"
+			},
+			"response": []
+		},
+		{
+			"name": "Cargar imagen de producto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/media/ivan/datos/Imagenes/media luna-001.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}api/uploads/productos/606e324cfdd6f3191dbb6583",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"uploads",
+						"productos",
+						"606e324cfdd6f3191dbb6583"
+					]
+				},
+				"description": "Sube una imaégen asociada al id pasado por parámetro. En el body debe ir: \n * archivo: imagen"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener imagen de producto o usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/uploads/productos/606e32dafdd6f3191dbb6584",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"uploads",
+						"productos",
+						"606e32dafdd6f3191dbb6584"
+					]
+				},
+				"description": "Petición GET al api /uploads/categoria/id donde: \n* categoria debe ser una catagoria válida: usuarios o productos.\n* id debe ser un id de mongo válido.\nSi el id no tiene ninguna imágen asociada se devuelve una imagen general indicando que no hay imagen para el producto o usuario."
+			},
+			"response": []
 		}
 	]
 }

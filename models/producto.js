@@ -26,8 +26,16 @@ const ProductoSchema = Schema({
         ref: 'Categoria',
         require: [true, 'La categoría es obligatoria y debe existir']
     },
-    descripcion: { type: String },
-    disponible: { type: Boolean, default: true },
+    descripcion: { 
+        type: String 
+    },
+    disponible: { 
+        type: Boolean, 
+        default: true 
+    },
+    img: {
+        type: String,
+    },
 });
 
 // formatea el json para mostrar determinados campos y de una forma determinada
