@@ -171,6 +171,31 @@
 			"response": []
 		},
 		{
+			"name": "Renovar o Validar JWT",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY3NDRkZmY4ZmE2Zjc5MTBlYmE0MmYiLCJpYXQiOjE2MTg2MTQxNDgsImV4cCI6MTYxODYyODU0OH0.kVqOylSL6HxbBmIKQku4BqfvMEgl20nKDfJmodU5EsU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/auth/",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"auth",
+						""
+					]
+				},
+				"description": "Petición GET al endpoint /api/auth para validar y renovar el JWT.\nEn el header debe ir:\n* x-token: [token]\nEl token debe pertenecer a un usuario autenticado, para ello correr primero el login"
+			},
+			"response": []
+		},
+		{
 			"name": "Obtener todas las categorías",
 			"request": {
 				"method": "GET",
